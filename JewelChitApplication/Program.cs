@@ -34,6 +34,7 @@
         options.AddPolicy("AllowAngular", policy =>
         {
             policy.WithOrigins(
+                "https://j-chit-frontend.vercel.app/",
                "http://localhost:4200",  // Angular
                "http://localhost:5000",  // Your API HTTP
                "https://localhost:5001"  // Your API HTTPS
