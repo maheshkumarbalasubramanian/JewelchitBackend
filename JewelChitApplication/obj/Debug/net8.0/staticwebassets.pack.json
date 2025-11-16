@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\wwwroot\\uploads\\company-logos\\7017c5c5-4a3f-43fd-8bec-c4da82d48047.png",
+      "PackagePath": "staticwebassets\\uploads\\company-logos\\7017c5c5-4a3f-43fd-8bec-c4da82d48047.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.JewelChitApplication.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.JewelChitApplication.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.JewelChitApplication.props",
+      "PackagePath": "build\\JewelChitApplication.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.JewelChitApplication.props",
+      "PackagePath": "buildMultiTargeting\\JewelChitApplication.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.JewelChitApplication.props",
+      "PackagePath": "buildTransitive\\JewelChitApplication.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

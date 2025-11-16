@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "Hash": "wQ1Qy32uSD4NbEsRSm6tk9XDQc9s7HpDJD1iXbC/APw=",
+  "Source": "JewelChitApplication",
+  "BasePath": "_content/JewelChitApplication",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "JewelChitApplication\\wwwroot",
+      "Source": "JewelChitApplication",
+      "ContentRoot": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\wwwroot\\",
+      "BasePath": "_content/JewelChitApplication",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\wwwroot\\uploads\\company-logos\\7017c5c5-4a3f-43fd-8bec-c4da82d48047.png",
+      "SourceId": "JewelChitApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\wwwroot\\",
+      "BasePath": "_content/JewelChitApplication",
+      "RelativePath": "uploads/company-logos/7017c5c5-4a3f-43fd-8bec-c4da82d48047#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "o7f8uz010i",
+      "Integrity": "/HaeldVEi0G6aV1U6+iFSM4U7T2oTvqB5T6bwzNA6oo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\company-logos\\7017c5c5-4a3f-43fd-8bec-c4da82d48047.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/company-logos/7017c5c5-4a3f-43fd-8bec-c4da82d48047.o7f8uz010i.png",
+      "AssetFile": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\wwwroot\\uploads\\company-logos\\7017c5c5-4a3f-43fd-8bec-c4da82d48047.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "348506"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/HaeldVEi0G6aV1U6+iFSM4U7T2oTvqB5T6bwzNA6oo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 10:43:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o7f8uz010i"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/company-logos/7017c5c5-4a3f-43fd-8bec-c4da82d48047.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/HaeldVEi0G6aV1U6+iFSM4U7T2oTvqB5T6bwzNA6oo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/company-logos/7017c5c5-4a3f-43fd-8bec-c4da82d48047.png",
+      "AssetFile": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\wwwroot\\uploads\\company-logos\\7017c5c5-4a3f-43fd-8bec-c4da82d48047.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "348506"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/HaeldVEi0G6aV1U6+iFSM4U7T2oTvqB5T6bwzNA6oo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 10:43:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/HaeldVEi0G6aV1U6+iFSM4U7T2oTvqB5T6bwzNA6oo="
+        }
+      ]
+    }
+  ]
+}

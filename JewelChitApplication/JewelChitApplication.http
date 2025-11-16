@@ -1,0 +1,6 @@
+@JewelChitApplication_HostAddress = http://localhost:5105
+
+GET {{JewelChitApplication_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
