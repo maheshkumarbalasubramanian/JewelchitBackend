@@ -138,3 +138,4 @@ C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\Jew
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\ref\JewelChitApplication.dll
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\EFCore.NamingConventions.dll
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.sourcelink.json

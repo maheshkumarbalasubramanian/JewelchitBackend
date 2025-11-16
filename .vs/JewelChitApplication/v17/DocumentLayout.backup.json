@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\code\\jewelChit\\JewelChitApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B2B86210-D410-4AEF-8173-B417C15E4348}|JewelChitApplication\\JewelChitApplication.csproj|c:\\code\\jewelchit\\jewelchitapplication\\jewelchitapplication\\controllers\\receiptcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2B86210-D410-4AEF-8173-B417C15E4348}|JewelChitApplication\\JewelChitApplication.csproj|solutionrelative:jewelchitapplication\\controllers\\receiptcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B2B86210-D410-4AEF-8173-B417C15E4348}|JewelChitApplication\\JewelChitApplication.csproj|c:\\code\\jewelchit\\jewelchitapplication\\jewelchitapplication\\controllers\\goldloanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2B86210-D410-4AEF-8173-B417C15E4348}|JewelChitApplication\\JewelChitApplication.csproj|solutionrelative:jewelchitapplication\\controllers\\goldloanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B2B86210-D410-4AEF-8173-B417C15E4348}|JewelChitApplication\\JewelChitApplication.csproj|c:\\code\\jewelchit\\jewelchitapplication\\jewelchitapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2B86210-D410-4AEF-8173-B417C15E4348}|JewelChitApplication\\JewelChitApplication.csproj|solutionrelative:jewelchitapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,55 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1581349376:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:6:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1741793304:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:4:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:593936006:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:3:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GoldLoansController.cs",
-              "DocumentMoniker": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\Controllers\\GoldLoansController.cs",
-              "RelativeDocumentMoniker": "JewelChitApplication\\Controllers\\GoldLoansController.cs",
-              "ToolTip": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\Controllers\\GoldLoansController.cs",
-              "RelativeToolTip": "JewelChitApplication\\Controllers\\GoldLoansController.cs",
-              "ViewState": "AgIAAI0BAAAAAAAAAAAUwJoBAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T09:57:52.712Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ReceiptController.cs",
-              "DocumentMoniker": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\Controllers\\ReceiptController.cs",
-              "RelativeDocumentMoniker": "JewelChitApplication\\Controllers\\ReceiptController.cs",
-              "ToolTip": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\Controllers\\ReceiptController.cs",
-              "RelativeToolTip": "JewelChitApplication\\Controllers\\ReceiptController.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAgwFYCAAAnAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\Program.cs",
+              "RelativeDocumentMoniker": "JewelChitApplication\\Program.cs",
+              "ToolTip": "C:\\code\\jewelChit\\JewelChitApplication\\JewelChitApplication\\Program.cs",
+              "RelativeToolTip": "JewelChitApplication\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACwAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T17:41:36.646Z",
+              "WhenOpened": "2025-11-16T10:21:36.839Z",
               "EditorCaption": ""
             }
           ]
