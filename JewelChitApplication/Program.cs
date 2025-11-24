@@ -6,10 +6,19 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
-    ?? builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
+// ?? builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrEmpty(connectionString))
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("DATABASE_URL environment variable is not set!");
+}
 
-Console.WriteLine($"[INFO] Connection string received: {(string.IsNullOrEmpty(connectionString) ? "EMPTY" : "OK")}");
+Console.WriteLine($"[INFO] Connection string received: OK", connectionString);
+
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
