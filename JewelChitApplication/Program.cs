@@ -65,7 +65,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngular", policy =>
     {
         policy.WithOrigins(
-            "https://jewel-chit-frontend-xxxxx.vercel.app",
+            "https://j-chit-frontend.vercel.app/",
             "http://localhost:4200",
             "http://localhost:5000",
             "https://localhost:5001"
