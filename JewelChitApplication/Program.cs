@@ -1,128 +1,137 @@
-    using Microsoft.EntityFrameworkCore;
-    using JewelChitApplication.Data;
-    using JewelChitApplication.Services;
-    using JewelChitApplication.Data;
-    using JewelChitApplication.Services;
+using Microsoft.EntityFrameworkCore;
+using JewelChitApplication.Data;
+using JewelChitApplication.Services;
 
-    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
+var builder = WebApplication.CreateBuilder(args);
 
-    var builder = WebApplication.CreateBuilder(args);
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
+    ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
-    var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
-        ?? builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"[INFO] Connection string received: {(string.IsNullOrEmpty(connectionString) ? "EMPTY" : "OK")}");
 
-
-    
-    Console.WriteLine($"Attempting to connect to database...");
-
-// Add services to the container
-    builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
-                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-                options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-            });
-
-        // Configure PostgreSQL Database
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseNpgsql(
-            connectionString,
-            npgsqlOptions => npgsqlOptions.CommandTimeout(60)
-        ));
-
-        // Register Services
-        builder.Services.AddScoped<ICustomerService, CustomerService>();
-
-    // Configure CORS
-    builder.Services.AddCors(options =>
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
     {
-        options.AddPolicy("AllowAngular", policy =>
-        {
-            policy.WithOrigins(
-                "https://j-chit-frontend.vercel.app/",
-               "http://localhost:4200",  // Angular
-               "http://localhost:5000",  // Your API HTTP
-               "https://localhost:5001"  // Your API HTTPS
-           )
-                 .AllowAnyHeader()
-                  .AllowAnyMethod()
-                  .AllowCredentials();
-        });
+        options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
     });
 
-    builder.Services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(options =>
+try
+{
+    Console.WriteLine("[INFO] Adding DbContext...");
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
     {
-        options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // 10 MB
+        options.UseNpgsql(connectionString);
     });
-
-// Add Swagger/OpenAPI
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen(c =>
+    Console.WriteLine("[INFO] DbContext added successfully");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"[ERROR] Failed to add DbContext: {ex.GetType().Name}");
+    Console.WriteLine($"[ERROR] Message: {ex.Message}");
+    if (ex.InnerException != null)
     {
-        c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-        {
-            Title = "Gold Mortgage API",
-            Version = "v1",
-            Description = "API for Gold Mortgage and Chit Fund Management System"
-        });
-    });
-
-    // Add logging
-    builder.Services.AddLogging(logging =>
-    {
-        logging.AddConsole();
-        logging.AddDebug();
-    });
-
-    var app = builder.Build();
-
-    // Configure the HTTP request pipeline
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gold Mortgage API V1");
-            c.RoutePrefix = "swagger";
-        });
+        Console.WriteLine($"[ERROR] Inner: {ex.InnerException.Message}");
     }
-    var uploadsPath = Path.Combine(app.Environment.WebRootPath ?? "wwwroot", "uploads", "company-logos");
-    if (!Directory.Exists(uploadsPath))
+    throw;
+}
+
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
     {
-        Directory.CreateDirectory(uploadsPath);
-    }
+        policy.WithOrigins(
+            "https://jewel-chit-frontend-xxxxx.vercel.app",
+            "http://localhost:4200",
+            "http://localhost:5000",
+            "https://localhost:5001"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+    });
+});
 
-    app.UseStaticFiles();
-    // Enable CORS
-    app.UseCors("AllowAngular");
+builder.Services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
+});
 
-    //app.UseHttpsRedirection();
-
-    app.UseAuthorization();
-
-    app.MapControllers();
-
-    // Database Migration and Seeding
-    using (var scope = app.Services.CreateScope())
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
-        var services = scope.ServiceProvider;
-        try
-        {
-            var context = services.GetRequiredService<ApplicationDbContext>();
-            Console.WriteLine("Starting database migration...");
-        // Ensure database is created
-            context.Database.EnsureCreated();
-           //  context.Database.Migrate();
-        // Or use migrations: context.Database.Migrate();
-        Console.WriteLine("Database migration completed successfully!");
+        Title = "Jewel Chit API",
+        Version = "v1",
+        Description = "API for Jewel Chit Fund Management System"
+    });
+});
+
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+    logging.AddDebug();
+});
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Jewel Chit API V1");
+        c.RoutePrefix = "swagger";
+    });
+}
+
+var uploadsPath = Path.Combine(app.Environment.WebRootPath ?? "wwwroot", "uploads", "company-logos");
+if (!Directory.Exists(uploadsPath))
+{
+    Directory.CreateDirectory(uploadsPath);
+}
+
+app.UseStaticFiles();
+app.UseCors("AllowAngular");
+app.UseAuthorization();
+app.MapControllers();
+
+// Database Migration
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        Console.WriteLine("[INFO] Getting DbContext for migration...");
+        var context = services.GetRequiredService<ApplicationDbContext>();
+
+        Console.WriteLine("[INFO] Starting database migration...");
+        context.Database.Migrate();
+        Console.WriteLine("[INFO] Database migration completed!");
     }
-        catch (Exception ex)
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[ERROR] Database migration failed!");
+        Console.WriteLine($"[ERROR] Exception Type: {ex.GetType().Name}");
+        Console.WriteLine($"[ERROR] Message: {ex.Message}");
+
+        if (ex.InnerException != null)
         {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+            Console.WriteLine($"[ERROR] InnerException: {ex.InnerException.Message}");
         }
+
+        // Print stack trace
+        Console.WriteLine($"[ERROR] StackTrace:\n{ex.StackTrace}");
+
+        throw;
     }
-    Console.WriteLine("Application started successfully!");
-    app.Run();
+}
+
+Console.WriteLine("[INFO] Application starting...");
+app.Run();
