@@ -17,7 +17,17 @@ if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("DATABASE_URL environment variable is not set!");
 }
 
-Console.WriteLine($"[INFO] Connection string received: OK", connectionString);
+// Convert postgresql:// URL to Npgsql connection string if needed
+if (connectionString.StartsWith("postgresql://"))
+{
+    var uri = new Uri(connectionString);
+    var db = uri.LocalPath.TrimStart('/');
+
+    connectionString = $"Host={uri.Host};Port={uri.Port};Database={db};Username={uri.UserInfo.Split(':')[0]};Password={uri.UserInfo.Split(':')[1]};";
+    Console.WriteLine($"[INFO] Converted connection string");
+}
+
+Console.WriteLine($"[INFO] Connection string received: OK");
 
 
 builder.Services.AddControllers()
