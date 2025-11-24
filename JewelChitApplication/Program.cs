@@ -9,24 +9,31 @@
 
     var builder = WebApplication.CreateBuilder(args);
 
-    // Add services to the container
-    builder.Services.AddControllers()
-        .AddJsonOptions(options =>
-        {
-            options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
-            options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-            options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-        });
+    var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
+        ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
-    // Configure PostgreSQL Database
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+
+    
+    Console.WriteLine($"Attempting to connect to database...");
+
+// Add services to the container
+    builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+            });
+
+        // Configure PostgreSQL Database
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(
-            builder.Configuration.GetConnectionString("DefaultConnection"),
+            connectionString,
             npgsqlOptions => npgsqlOptions.CommandTimeout(60)
         ));
 
-    // Register Services
-    builder.Services.AddScoped<ICustomerService, CustomerService>();
+        // Register Services
+        builder.Services.AddScoped<ICustomerService, CustomerService>();
 
     // Configure CORS
     builder.Services.AddCors(options =>
@@ -81,7 +88,7 @@
             c.RoutePrefix = "swagger";
         });
     }
-    var uploadsPath = Path.Combine(app.Environment.WebRootPath, "uploads", "company-logos");
+    var uploadsPath = Path.Combine(app.Environment.WebRootPath ?? "wwwroot", "uploads", "company-logos");
     if (!Directory.Exists(uploadsPath))
     {
         Directory.CreateDirectory(uploadsPath);
@@ -104,15 +111,18 @@
         try
         {
             var context = services.GetRequiredService<ApplicationDbContext>();
-            // Ensure database is created
-            context.Database.EnsureCreated();
-            // Or use migrations: context.Database.Migrate();
-        }
+            Console.WriteLine("Starting database migration...");
+        // Ensure database is created
+           // context.Database.EnsureCreated();
+             context.Database.Migrate();
+        // Or use migrations: context.Database.Migrate();
+        Console.WriteLine("Database migration completed successfully!");
+    }
         catch (Exception ex)
         {
             var logger = services.GetRequiredService<ILogger<Program>>();
             logger.LogError(ex, "An error occurred while migrating or seeding the database.");
         }
     }
-
+    Console.WriteLine("Application started successfully!");
     app.Run();
