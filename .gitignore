@@ -1,0 +1,38 @@
+# Run this in PowerShell in your project folder
+@"
+# Visual Studio
+.vs/
+.vscode/
+bin/
+obj/
+.user
+*.suo
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# NuGet
+*.nupkg
+.nuget/
+
+# Entity Framework
+*.db
+*.db-shm
+*.db-wal
+
+# IDE
+.idea/
+*.swp
+.DS_Store
+
+# Environment
+.env
+*.log
+
+# Node (if using npm)
+node_modules/
+package-lock.json
+"@ | Out-File -FilePath .gitignore -Encoding UTF8

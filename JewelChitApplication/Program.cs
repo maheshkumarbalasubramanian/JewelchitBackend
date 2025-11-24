@@ -113,8 +113,8 @@
             var context = services.GetRequiredService<ApplicationDbContext>();
             Console.WriteLine("Starting database migration...");
         // Ensure database is created
-           // context.Database.EnsureCreated();
-             context.Database.Migrate();
+            context.Database.EnsureCreated();
+           //  context.Database.Migrate();
         // Or use migrations: context.Database.Migrate();
         Console.WriteLine("Database migration completed successfully!");
     }
