@@ -131,8 +131,8 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<ApplicationDbContext>();
 
         Console.WriteLine("[INFO] Starting database migration...");
-        //context.Database.EnsureCreated();
-        context.Database.Migrate();
+        context.Database.EnsureCreated();
+       //ontext.Database.Migrate();
         Console.WriteLine("[INFO] Database migration completed!");
     }
     catch (Exception ex)
