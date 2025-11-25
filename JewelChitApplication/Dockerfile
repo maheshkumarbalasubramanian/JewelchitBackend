@@ -9,4 +9,6 @@ WORKDIR /app
 COPY --from=build /app/out .
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
+RUN echo "Rebuilding..."
+RUN ls -la /app
 ENTRYPOINT ["sh", "-c", "dotnet *.dll"]
