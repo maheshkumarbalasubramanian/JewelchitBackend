@@ -39,27 +39,27 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
     });
 
-try
-{
-    Console.WriteLine("[INFO] Adding DbContext...");
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    {
-        options.UseNpgsql(connectionString);
-    });
-    Console.WriteLine("[INFO] DbContext added successfully");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"[ERROR] Failed to add DbContext: {ex.GetType().Name}");
-    Console.WriteLine($"[ERROR] Message: {ex.Message}");
-    if (ex.InnerException != null)
-    {
-        Console.WriteLine($"[ERROR] Inner: {ex.InnerException.Message}");
-    }
-    throw;
-}
+//try
+//{
+//    Console.WriteLine("[INFO] Adding DbContext...");
+//    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    {
+//        options.UseNpgsql(connectionString);
+//    });
+//    Console.WriteLine("[INFO] DbContext added successfully");
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine($"[ERROR] Failed to add DbContext: {ex.GetType().Name}");
+//    Console.WriteLine($"[ERROR] Message: {ex.Message}");
+//    if (ex.InnerException != null)
+//    {
+//        Console.WriteLine($"[ERROR] Inner: {ex.InnerException.Message}");
+//    }
+//    //throw;
+//}
 
-builder.Services.AddScoped<ICustomerService, CustomerService>();
+//builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 builder.Services.AddCors(options =>
 {
@@ -101,15 +101,15 @@ builder.Services.AddLogging(logging =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Jewel Chit API V1");
-        c.RoutePrefix = "swagger";
-    });
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI(c =>
+//    {
+//        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Jewel Chit API V1");
+//        c.RoutePrefix = "swagger";
+//    });
+//}
 
 var uploadsPath = Path.Combine(app.Environment.WebRootPath ?? "wwwroot", "uploads", "company-logos");
 if (!Directory.Exists(uploadsPath))
@@ -144,36 +144,36 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Database Migration
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        Console.WriteLine("[INFO] Getting DbContext for migration...");
-        var context = services.GetRequiredService<ApplicationDbContext>();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    try
+//    {
+//        Console.WriteLine("[INFO] Getting DbContext for migration...");
+//        var context = services.GetRequiredService<ApplicationDbContext>();
 
-        Console.WriteLine("[INFO] Starting database migration...");
-        context.Database.EnsureCreated();
-       //ontext.Database.Migrate();
-        Console.WriteLine("[INFO] Database migration completed!");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"[ERROR] Database migration failed!");
-        Console.WriteLine($"[ERROR] Exception Type: {ex.GetType().Name}");
-        Console.WriteLine($"[ERROR] Message: {ex.Message}");
+//        Console.WriteLine("[INFO] Starting database migration...");
+//        context.Database.EnsureCreated();
+//       //ontext.Database.Migrate();
+//        Console.WriteLine("[INFO] Database migration completed!");
+//    }
+//    catch (Exception ex)
+//    {
+//        Console.WriteLine($"[ERROR] Database migration failed!");
+//        Console.WriteLine($"[ERROR] Exception Type: {ex.GetType().Name}");
+//        Console.WriteLine($"[ERROR] Message: {ex.Message}");
 
-        if (ex.InnerException != null)
-        {
-            Console.WriteLine($"[ERROR] InnerException: {ex.InnerException.Message}");
-        }
+//        if (ex.InnerException != null)
+//        {
+//            Console.WriteLine($"[ERROR] InnerException: {ex.InnerException.Message}");
+//        }
 
-        // Print stack trace
-        Console.WriteLine($"[ERROR] StackTrace:\n{ex.StackTrace}");
+//        // Print stack trace
+//        Console.WriteLine($"[ERROR] StackTrace:\n{ex.StackTrace}");
 
-       // throw;
-    }
-}
+//       // throw;
+//    }
+//}
 
 Console.WriteLine("[INFO] Application starting...");
 Console.Out.Flush();
