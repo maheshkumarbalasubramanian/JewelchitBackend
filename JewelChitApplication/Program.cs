@@ -119,6 +119,27 @@ if (!Directory.Exists(uploadsPath))
 app.UseStaticFiles();
 app.UseCors("AllowAngular");
 app.UseAuthorization();
+app.Use(async (context, next) =>
+{
+    try
+    {
+        Console.WriteLine($"[REQUEST] {context.Request.Method} {context.Request.Path}");
+        await next.Invoke();
+        Console.WriteLine($"[RESPONSE] Status: {context.Response.StatusCode}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[MIDDLEWARE ERROR] {ex.GetType().Name}: {ex.Message}");
+        Console.WriteLine($"[MIDDLEWARE ERROR] Stack: {ex.StackTrace}");
+        throw;
+    }
+});
+
+
+
+
+
+
 app.MapControllers();
 
 // Database Migration
