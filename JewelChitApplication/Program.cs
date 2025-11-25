@@ -14,6 +14,7 @@ if (string.IsNullOrEmpty(connectionString))
 }
 if (string.IsNullOrEmpty(connectionString))
 {
+    Console.WriteLine("DATABASE_URL environment variable is not set!");
     throw new InvalidOperationException("DATABASE_URL environment variable is not set!");
 }
 
@@ -170,7 +171,7 @@ using (var scope = app.Services.CreateScope())
         // Print stack trace
         Console.WriteLine($"[ERROR] StackTrace:\n{ex.StackTrace}");
 
-        throw;
+       // throw;
     }
 }
 
