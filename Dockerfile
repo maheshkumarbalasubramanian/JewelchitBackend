@@ -6,12 +6,11 @@ WORKDIR /src
 COPY . .
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/out
-RUN echo "=== CHECKING /app/out CONTENTS ===" && ls -lh /app/out/ | head -30
+RUN echo "=== CONTENTS ===" && ls -lh /app/out/ && echo "=== TOTAL FILES ===" && find /app/out -type f | wc -l
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
-RUN echo "=== CHECKING /app AFTER COPY ===" && ls -lh /app | head -30
 RUN ls -lh /app/ | head -20
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
