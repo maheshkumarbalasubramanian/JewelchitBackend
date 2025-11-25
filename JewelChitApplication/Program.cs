@@ -117,8 +117,8 @@ if (!Directory.Exists(uploadsPath))
 }
 
 app.UseStaticFiles();
-//app.UseCors("AllowAngular");
-//app.UseAuthorization();
+app.UseCors("AllowAngular");
+app.UseAuthorization();
 app.MapControllers();
 
 // Database Migration
@@ -131,7 +131,7 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<ApplicationDbContext>();
 
         Console.WriteLine("[INFO] Starting database migration...");
-       // context.Database.EnsureCreated();
+        context.Database.EnsureCreated();
        //ontext.Database.Migrate();
         Console.WriteLine("[INFO] Database migration completed!");
     }
