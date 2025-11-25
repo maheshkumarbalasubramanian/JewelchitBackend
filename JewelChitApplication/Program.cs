@@ -131,7 +131,7 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<ApplicationDbContext>();
 
         Console.WriteLine("[INFO] Starting database migration...");
-        context.Database.EnsureCreated();
+       // context.Database.EnsureCreated();
        //ontext.Database.Migrate();
         Console.WriteLine("[INFO] Database migration completed!");
     }
@@ -153,5 +153,14 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-Console.WriteLine("[INFO] Application starting...");
-app.Run();
+try
+{
+    Console.WriteLine("[INFO] Application starting...");
+    app.Run();
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"[FATAL] App.Run() failed: {ex.Message}");
+    Console.WriteLine($"[FATAL] {ex.StackTrace}");
+    throw;
+}
