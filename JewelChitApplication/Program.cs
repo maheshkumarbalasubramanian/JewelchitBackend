@@ -175,15 +175,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-try
-{
-    Console.WriteLine("[INFO] Application starting...");
-    app.Run();
-    Console.WriteLine("[INFO] app.Run() completed (this shouldn't print)");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"[FATAL] App.Run() failed: {ex.Message}");
-    Console.WriteLine($"[FATAL] {ex.StackTrace}");
-    throw;
-}
+Console.WriteLine("[INFO] Application starting...");
+Console.Out.Flush();
+app.Run();
