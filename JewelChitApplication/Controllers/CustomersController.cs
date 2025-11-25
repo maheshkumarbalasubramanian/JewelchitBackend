@@ -20,6 +20,12 @@ namespace JewelChitApplication.Controllers
             _logger = logger;
         }
 
+        [HttpGet("health")]
+        public IActionResult Health()
+        {
+            return Ok(new { status = "healthy", timestamp = DateTime.UtcNow });
+        }
+
         /// <summary>
         /// Get all customers with filtering, sorting, and pagination
         /// </summary>
