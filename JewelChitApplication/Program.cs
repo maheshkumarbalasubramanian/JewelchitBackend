@@ -117,8 +117,8 @@ if (!Directory.Exists(uploadsPath))
 }
 
 app.UseStaticFiles();
-app.UseCors("AllowAngular");
-app.UseAuthorization();
+//app.UseCors("AllowAngular");
+//app.UseAuthorization();
 app.MapControllers();
 
 // Database Migration
