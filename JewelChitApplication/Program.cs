@@ -179,6 +179,7 @@ try
 {
     Console.WriteLine("[INFO] Application starting...");
     app.Run();
+    Console.WriteLine("[INFO] app.Run() completed (this shouldn't print)");
 }
 catch (Exception ex)
 {
