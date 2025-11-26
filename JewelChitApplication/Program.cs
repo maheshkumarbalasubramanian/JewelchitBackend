@@ -31,9 +31,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 
 // ============ DATABASE CONFIGURATION ============
-var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
-    ?? builder.Configuration.GetConnectionString("DefaultConnection");
-
+var connectionString = GetConnectionString();
 Console.WriteLine($"[DATABASE] Connection string source: {(Environment.GetEnvironmentVariable("DATABASE_URL") != null ? "Railway DATABASE_URL" : "appsettings.json")}");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -41,6 +39,43 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         connectionString,
         npgsqlOptions => npgsqlOptions.CommandTimeout(60)
     ));
+
+// Helper method to convert Railway PostgreSQL URI to EF Core format
+string GetConnectionString()
+{
+    var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+    if (string.IsNullOrEmpty(databaseUrl))
+    {
+        return builder.Configuration.GetConnectionString("DefaultConnection");
+    }
+
+    // Convert postgresql://user:password@host:port/database to EF Core format
+    var uri = new Uri(databaseUrl);
+    var userInfo = uri.UserInfo.Split(':');
+    var username = userInfo[0];
+    var password = userInfo.Length > 1 ? userInfo[1] : "";
+    var host = uri.Host;
+    var port = uri.Port == -1 ? 5432 : uri.Port;
+    var database = uri.AbsolutePath.TrimStart('/');
+
+    //postgresql://postgres:YsfdPTODetJlwyFGcWTRyQkjBRHgTUMX@shinkansen.proxy.rlwy.net:33463/railway
+
+    var connectionStringBuilder = new Npgsql.NpgsqlConnectionStringBuilder
+    {
+        Host = host,
+        Port = port,
+        Username = username,
+        Password = password,
+        Database = database,
+        SslMode = Npgsql.SslMode.Require,  // Railway requires SSL
+        TrustServerCertificate = true
+    };
+
+    Console.WriteLine($"[DATABASE] Parsed: Host={host}, Port={port}, User={username}, DB={database}");
+
+    return connectionStringBuilder.ConnectionString;
+}
 
 // ============ CONTROLLERS & JSON OPTIONS ============
 builder.Services.AddControllers()
