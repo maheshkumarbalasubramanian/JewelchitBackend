@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -26,6 +26,15 @@ builder.WebHost.ConfigureKestrel(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+app.Lifetime.ApplicationStarted.Register(() =>
+    Console.WriteLine("[LIFETIME] ApplicationStarted " + DateTime.UtcNow));
+
+app.Lifetime.ApplicationStopping.Register(() =>
+    Console.WriteLine("[LIFETIME] ApplicationStopping " + DateTime.UtcNow));
+
+app.Lifetime.ApplicationStopped.Register(() =>
+    Console.WriteLine("[LIFETIME] ApplicationStopped " + DateTime.UtcNow));
 
 Console.WriteLine($"[STARTUP] App starting. PORT={port} (ASPNETCORE_URLS={Environment.GetEnvironmentVariable("ASPNETCORE_URLS")})");
 Console.Out.Flush();
