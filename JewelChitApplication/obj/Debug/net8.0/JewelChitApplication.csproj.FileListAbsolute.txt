@@ -7,6 +7,7 @@ C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\Jew
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\JewelChitApplication.runtimeconfig.json
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\JewelChitApplication.dll
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\JewelChitApplication.pdb
+C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\EFCore.NamingConventions.dll
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\Humanizer.dll
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\Microsoft.Build.Locator.dll
@@ -120,6 +121,7 @@ C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\Jew
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.csproj.CoreCompileInputs.cache
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.MvcApplicationPartsAssemblyInfo.cs
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.sourcelink.json
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\scopedcss\bundle\JewelChitApplication.styles.css
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\staticwebassets.build.json
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\staticwebassets.development.json
@@ -136,6 +138,4 @@ C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\ref
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.pdb
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.genruntimeconfig.cache
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\ref\JewelChitApplication.dll
-C:\code\jewelChit\JewelChitApplication\JewelChitApplication\bin\Debug\net8.0\EFCore.NamingConventions.dll
 C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
-C:\code\jewelChit\JewelChitApplication\JewelChitApplication\obj\Debug\net8.0\JewelChitApplication.sourcelink.json
